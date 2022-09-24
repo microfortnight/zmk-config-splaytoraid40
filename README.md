@@ -1,0 +1,3 @@
+My [Miryoku](https://github.com/manna-harbour/zmk-config)-style keymap for the Splaytoraid40 (rev2) keyboard by [freya-irl](https://github.com/freya-irl).
+
+I extracted the shield from the [rev2 branch](https://github.com/freya-irl/zmk/tree/rev2qwerty/app/boards/shields/splaytoraid40) of Freya's ZMK fork, added a five_column_transform and created a config repository from it, so I can build the firmware using vanilla [ZMK](https://github.com/zmkfirmware/zmk).

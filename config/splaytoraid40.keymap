@@ -1,0 +1,236 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
+
+#define BASE  0
+#define SYM   1
+#define NAV   2
+#define NUM   3
+#define FUN   4
+#define MEDIA 5
+
+&lt {
+    quick_tap_ms = <200>;
+};
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS>;
+};
+
+&sl {
+    release-after-ms = <2000>;
+};
+
+/ {
+
+    chosen {
+        zmk,matrix_transform = &five_column_transform;
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <0 1>;
+            bindings = <&lt MEDIA ESC>;
+        };
+        combo_space {
+            timeout-ms = <50>;
+            key-positions = <1 2>;
+            bindings = <&lt NAV SPACE>;
+        };
+        combo_tab {
+            timeout-ms = <50>;
+            key-positions = <2 3>;
+            bindings = <&kp TAB>;
+        };
+        compo_return {
+            timeout-ms = <50>;
+            key-positions = <6 7>;
+            bindings = <&lt SYM RET>;
+        };
+        combo_backspace {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            bindings = <&lt NUM BSPC>;
+        };
+        combo_delete {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            bindings = <&lt FUN DEL>;
+        };
+        combo_sl_media {
+            timeout-ms = <50>;
+            key-positions = <28 29>;
+            bindings = <&sl MEDIA>;
+        };
+        combo_sl_nav {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            bindings = <&sl NAV>;
+        };
+        combo_sl_sym {
+            timeout-ms = <50>;
+            key-positions = <22 23>;
+            bindings = <&sl SYM>;
+        };
+        combo_sl_num {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            bindings = <&sl NUM>;
+        };
+        combo_sl_fun {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            bindings = <&sl FUN>;
+        };
+        combo_capsWord {
+            timeout-ms = <50>;
+            key-positions = <22 27>;
+            bindings = <&caps_word>;
+        };
+    };
+
+    behaviors {
+        hm: home-row-mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <175>;
+            quick-tap-ms = <125>;
+            global-quick-tap;
+            bindings = <&kp>, <&kp>;
+        };
+
+        hs: home-row-shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_SHIFT";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <175>;
+            // quick-tap-ms = <125>;
+            // global-quick-tap;
+            bindings = <&kp>, <&kp>;
+        };
+
+        u_rgb_eff: u_rgb_eff {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_RGB_EFF";
+            #binding-cells = <0>;
+            bindings = <&rgb_ug RGB_EFF>, <&rgb_ug RGB_EFR>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_rgb_hui: u_rgb_hui {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_RGB_HUI";
+            #binding-cells = <0>;
+            bindings = <&rgb_ug RGB_HUI>, <&rgb_ug RGB_HUD>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_rgb_sai: u_rgb_sai {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_RGB_SAI";
+            #binding-cells = <0>;
+            bindings = <&rgb_ug RGB_SAI>, <&rgb_ug RGB_SAD>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_rgb_bri: u_rgb_bri {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_RGB_BRI";
+            #binding-cells = <0>;
+            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_ep_tog: u_ep_tog {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_EP_TOG";
+            #binding-cells = <0>;
+            bindings = <&ext_power EP_TOG>, <&ext_power EP_OFF>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        
+        base_layer {
+            label= "BASE"                              ;
+            bindings = <
+                &kp Q         &kp W         &kp F         &kp P         &kp B         &kp J         &kp L         &kp U         &kp Y         &kp QUOT
+                &hm LGUI A    &hm LALT R    &hm LCTRL S   &hs LSHFT T   &kp G         &kp M         &hs RSHFT N   &hm RCTRL E   &hm LALT I    &hm LGUI O
+                &kp Z         &hm RALT X    &kp C         &kp D         &kp V         &kp K         &kp H         &kp COMMA     &hm RALT DOT  &kp SLASH
+                                            &lt MEDIA ESC &lt NAV SPACE &kp TAB       &lt SYM RET   &lt NUM BSPC  &lt FUN DEL
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        sym_layer {
+            label= "SYM";
+            bindings = <
+                &kp LBRC      &kp AMPS      &kp ASTRK     &kp LPAR      &kp RBRC      &none         &none         &none         &none         &none
+                &kp COLON     &kp DLLR      &kp PRCT      &kp CRRT      &kp PLUS      &none         &kp RSHFT     &kp RCTRL     &kp LALT      &kp LGUI
+                &kp TILDE     &kp EXCL      &kp AT        &kp HASH      &kp PIPE      &none         &none         &none         &kp RALT      &none
+                                            &kp LPAR      &kp RPAR      &kp UNDER     &none         &none         &none
+             >;
+             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        nav_layer {
+            label= "NAV";
+            bindings = <
+                &none         &none         &none         &none         &none         &none         &none         &none         &none         &none
+                &kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     &none         &none         &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT
+                &none         &kp RALT      &none         &none         &none         &none         &kp HOME      &kp PG_DN     &kp PG_UP     &kp END
+                                            &none         &none         &none         &kp RET       &kp BSPC      &kp DEL
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        num_layer {
+            label= "NUM";
+            bindings = <
+                &kp LBKT      &kp N7        &kp N8        &kp N9        &kp RBKT      &none         &none         &none         &none         &none
+                &kp SEMI      &kp N4        &kp N5        &kp N6        &kp EQUAL     &none         &kp RSHFT     &kp RCTRL     &kp LALT      &kp LGUI
+                &kp GRAVE     &kp N1        &kp N2        &kp N3        &kp BSLH      &none         &none         &none         &kp RALT      &none
+                                            &kp DOT       &kp N0        &kp MINUS     &none         &none         &none
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        fun_layer {
+            label= "FUN";
+            bindings = <
+                &kp F12       &kp F7        &kp F8        &kp F9        &kp PSCRN     &none         &none         &none         &none         &bootloader
+                &kp F11       &kp F4        &kp F5        &kp F6        &kp SLCK      &none         &kp RSHFT     &kp RCTRL     &kp LALT      &kp LGUI
+                &kp F10       &kp F1        &kp F2        &kp F3        &kp PAUSE_BREAK &none       &none         &none         &kp RALT      &none
+                                            &kp K_APP     &kp SPACE     &kp TAB       &none         &none         &none
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        media_layer {
+            label= "MEDIA";
+            bindings = <
+                &bootloader    &none        &none         &none         &none         &rgb_ug RGB_TOG &u_rgb_eff  &u_rgb_hui    &u_rgb_sai    &u_rgb_bri
+                &kp LGUI       &kp LALT     &kp LCTRL     &kp LSHFT     &none         &u_ep_tog     &kp C_PREV    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT
+                &none          &kp RALT     &none         &none         &none         &out OUT_TOG  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3
+                                            &none         &none         &none         &kp C_STOP    &kp C_PP      &kp C_MUTE
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+    };
+};

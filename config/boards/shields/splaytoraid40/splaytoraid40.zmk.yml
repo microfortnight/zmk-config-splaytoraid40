@@ -1,0 +1,11 @@
+file_format: "1"
+id: splaytoraid40
+name: SPLAYTORAID40
+type: shield
+url: https://github.com/freya-irl/zmk
+requires: 
+  - pro_micro
+features:
+  - keys
+  - underglow
+  - encoder
