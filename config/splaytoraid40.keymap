@@ -175,7 +175,7 @@
                 &kp Z         &hm RALT X    &kp C         &kp D         &kp V         &kp K         &kp H         &kp COMMA     &hm RALT DOT  &kp SLASH
                                             &lt MEDIA ESC &lt NAV SPACE &kp TAB       &lt SYM RET   &lt NUM BSPC  &lt FUN DEL
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         sym_layer {
@@ -186,7 +186,7 @@
                 &kp TILDE     &kp EXCL      &kp AT        &kp HASH      &kp PIPE      &none         &none         &none         &kp RALT      &none
                                             &kp LPAR      &kp RPAR      &kp UNDER     &none         &none         &none
              >;
-             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         nav_layer {
@@ -197,7 +197,7 @@
                 &none         &kp RALT      &none         &none         &none         &none         &kp HOME      &kp PG_DN     &kp PG_UP     &kp END
                                             &none         &none         &none         &kp RET       &kp BSPC      &kp DEL
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         num_layer {
@@ -208,7 +208,7 @@
                 &kp GRAVE     &kp N1        &kp N2        &kp N3        &kp BSLH      &none         &none         &none         &kp RALT      &none
                                             &kp DOT       &kp N0        &kp MINUS     &none         &none         &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         fun_layer {
@@ -219,7 +219,7 @@
                 &kp F10       &kp F1        &kp F2        &kp F3        &kp PAUSE_BREAK &none       &none         &none         &kp RALT      &none
                                             &kp K_APP     &kp SPACE     &kp TAB       &none         &none         &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         media_layer {
@@ -230,7 +230,12 @@
                 &none          &kp RALT     &none         &none         &none         &out OUT_TOG  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3
                                             &none         &none         &none         &kp C_STOP    &kp C_PP      &kp C_MUTE
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
     };
+
+    center_encoder: encoder_center {
+		resolution = <2>;
+	};
+
 };
