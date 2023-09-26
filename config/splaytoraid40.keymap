@@ -100,6 +100,36 @@
         };
     };
 
+    macros {
+        u_bt0_clr: u_bt0_clr {
+            label = "U_BT0_CLR";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 0 &bt BT_CLR>;
+        };
+
+        u_bt1_clr: u_bt1_clr {
+            label = "U_BT1_CLR";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 1 &bt BT_CLR>;
+        };
+
+        u_bt2_clr: u_bt2_clr {
+            label = "U_BT2_CLR";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 2 &bt BT_CLR>;
+        };
+
+        u_bt3_clr: u_bt3_clr {
+            label = "U_BT3_CLR";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 3 &bt BT_CLR>;
+        };
+    };
+
     behaviors {
         hm: home-row-mods {
             compatible = "zmk,behavior-hold-tap";
@@ -162,13 +192,62 @@
             bindings = <&ext_power EP_TOG>, <&ext_power EP_OFF>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        u_rgb_tog: u_rgb_tog {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_RGB_TOG";
+            #binding-cells = <0>;
+            bindings = <&rgb_ug RGB_TOG>, <&rgb_ug RGB_OFF>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_out_tog: u_out_tog {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_OUT_TOG";
+            #binding-cells = <0>;
+            bindings = <&out OUT_TOG>, <&out OUT_BLE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_bt0_tog: u_bt0_tog {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_BT0_TOG";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0>, <&u_bt0_clr>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_bt1_tog: u_bt1_tog {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_BT1_TOG";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1>, <&u_bt1_clr>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_bt2_tog: u_bt2_tog {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_BT2_TOG";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 2>, <&u_bt2_clr>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        u_bt3_tog: u_bt3_tog {
+            compatible = "zmk,behavior-mod-morph";
+            label = "U_BT3_TOG";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 3>, <&u_bt3_clr>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
     };
 
     keymap {
         compatible = "zmk,keymap";
         
         base_layer {
-            label= "BASE"                              ;
+            label= "BASE";
             bindings = <
                 &kp Q         &kp W         &kp F         &kp P         &kp B         &kp J         &kp L         &kp U         &kp Y         &kp QUOT
                 &hm LGUI A    &hm LALT R    &hm LCTRL S   &hs LSHFT T   &kp G         &kp M         &hs RSHFT N   &hm RCTRL E   &hm LALT I    &hm LGUI O
@@ -225,9 +304,9 @@
         media_layer {
             label= "MEDIA";
             bindings = <
-                &bootloader    &none        &none         &none         &none         &rgb_ug RGB_TOG &u_rgb_eff  &u_rgb_hui    &u_rgb_sai    &u_rgb_bri
+                &bootloader    &none        &none         &none         &none         &u_rgb_tog    &u_rgb_eff    &u_rgb_hui    &u_rgb_sai    &u_rgb_bri
                 &kp LGUI       &kp LALT     &kp LCTRL     &kp LSHFT     &none         &u_ep_tog     &kp C_PREV    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT
-                &none          &kp RALT     &none         &none         &none         &out OUT_TOG  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3
+                &none          &kp RALT     &none         &none         &none         &u_out_tog    &u_bt0_tog    &u_bt1_tog    &u_bt2_tog    &u_bt3_tog
                                             &none         &none         &none         &kp C_STOP    &kp C_PP      &kp C_MUTE
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
