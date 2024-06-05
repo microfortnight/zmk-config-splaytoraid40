@@ -11,12 +11,18 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/rgb.h>
 
-#define BASE  0
-#define SYM   1
-#define NAV   2
-#define NUM   3
-#define FUN   4
-#define MEDIA 5
+#define BASE    0
+#define SYM     1
+#define NAV     2
+#define NUM     3
+#define FUN     4
+#define MEDIA   5
+#define MBASE   6
+#define MSYM    7
+#define MNAV    8
+#define MNUM    9
+#define MFUN   10
+#define MMEDIA 11
 
 &lt {
     quick_tap_ms = <200>;
@@ -38,66 +44,203 @@
 
     combos {
         compatible = "zmk,combos";
+        
+        // combos linux/windows
+        combo_auml {
+            timeout-ms = <50>;
+            key-positions = <0 10>;
+            bindings = <&kp RA(Q)>;
+            layers = <BASE>;
+        };
+        combo_ouml {
+            timeout-ms = <50>;
+            key-positions = <9 19>;
+            bindings = <&kp RA(P)>;
+            layers = <BASE>;
+        };
+        combo_uuml {
+            timeout-ms = <50>;
+            key-positions = <7 17>;
+            bindings = <&kp RA(Y)>;
+            layers = <BASE>;
+        };
+        combo_szlig {
+            timeout-ms = <50>;
+            key-positions = <2 12>;
+            bindings = <&kp RA(S)>;
+            layers = <BASE>;
+        };
+        combo_euro {
+            timeout-ms = <50>;
+            key-positions = <17 27>;
+            bindings = <&kp RA(N5)>;
+            layers = <BASE>;
+        };
         combo_esc {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&lt MEDIA ESC>;
+            layers = <BASE>;
         };
         combo_space {
             timeout-ms = <50>;
             key-positions = <1 2>;
             bindings = <&lt NAV SPACE>;
+            layers = <BASE>;
         };
-        combo_tab {
-            timeout-ms = <50>;
-            key-positions = <2 3>;
-            bindings = <&kp TAB>;
-        };
-        compo_return {
+        combo_return {
             timeout-ms = <50>;
             key-positions = <6 7>;
             bindings = <&lt SYM RET>;
+            layers = <BASE>;
         };
         combo_backspace {
             timeout-ms = <50>;
             key-positions = <7 8>;
             bindings = <&lt NUM BSPC>;
+            layers = <BASE>;
         };
         combo_delete {
             timeout-ms = <50>;
             key-positions = <8 9>;
             bindings = <&lt FUN DEL>;
+            layers = <BASE>;
         };
         combo_sl_media {
             timeout-ms = <50>;
             key-positions = <28 29>;
             bindings = <&sl MEDIA>;
+            layers = <BASE>;
         };
         combo_sl_nav {
             timeout-ms = <50>;
             key-positions = <27 28>;
             bindings = <&sl NAV>;
+            layers = <BASE>;
         };
         combo_sl_sym {
             timeout-ms = <50>;
             key-positions = <22 23>;
             bindings = <&sl SYM>;
+            layers = <BASE>;
         };
         combo_sl_num {
             timeout-ms = <50>;
             key-positions = <21 22>;
             bindings = <&sl NUM>;
+            layers = <BASE>;
         };
         combo_sl_fun {
             timeout-ms = <50>;
             key-positions = <20 21>;
             bindings = <&sl FUN>;
+            layers = <BASE>;
+        };
+
+        // combos mac
+        combo_auml_mac {
+            timeout-ms = <50>;
+            key-positions = <0 10>;
+            bindings = <&auml_mac>;
+            layers = <MBASE>;
+        };
+        combo_ouml_mac {
+            timeout-ms = <50>;
+            key-positions = <9 19>;
+            bindings = <&ouml_mac>;
+            layers = <MBASE>;
+        };
+        combo_uuml_mac {
+            timeout-ms = <50>;
+            key-positions = <7 17>;
+            bindings = <&uuml_mac>;
+            layers = <MBASE>;
+        };
+        combo_szlig_mac {
+            timeout-ms = <50>;
+            key-positions = <2 12>;
+            bindings = <&mac_szlig>;
+            layers = <MBASE>;
+        };
+        combo_euro_mac {
+            timeout-ms = <50>;
+            key-positions = <17 27>;
+            bindings = <&mac_euro>;
+            layers = <MBASE>;
+        };
+        combo_esc_mac {
+            timeout-ms = <50>;
+            key-positions = <0 1>;
+            bindings = <&lt MMEDIA ESC>;
+            layers = <MBASE>;
+        };
+        combo_space_mac {
+            timeout-ms = <50>;
+            key-positions = <1 2>;
+            bindings = <&lt MNAV SPACE>;
+            layers = <MBASE>;
+        };
+        combo_return_mac {
+            timeout-ms = <50>;
+            key-positions = <6 7>;
+            bindings = <&lt MSYM RET>;
+            layers = <MBASE>;
+        };
+        combo_backspace_mac {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            bindings = <&lt MNUM BSPC>;
+            layers = <MBASE>;
+        };
+        combo_delete_mac {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            bindings = <&lt MFUN DEL>;
+            layers = <MBASE>;
+        };
+        combo_sl_media_mac {
+            timeout-ms = <50>;
+            key-positions = <28 29>;
+            bindings = <&sl MMEDIA>;
+            layers = <MBASE>;
+        };
+        combo_sl_nav_mac {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            bindings = <&sl MNAV>;
+            layers = <MBASE>;
+        };
+        combo_sl_sym_mac {
+            timeout-ms = <50>;
+            key-positions = <22 23>;
+            bindings = <&sl MSYM>;
+            layers = <MBASE>;
+        };
+        combo_sl_num_mac {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            bindings = <&sl MNUM>;
+            layers = <MBASE>;
+        };
+        combo_sl_fun_mac {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            bindings = <&sl MFUN>;
+            layers = <MBASE>;
+        };
+
+        // combos universal
+        combo_tab {
+            timeout-ms = <50>;
+            key-positions = <2 3>;
+            bindings = <&kp TAB>;
         };
         combo_capsWord {
             timeout-ms = <50>;
             key-positions = <22 27>;
             bindings = <&caps_word>;
         };
+
     };
 
     macros {
@@ -128,6 +271,115 @@
             #binding-cells = <0>;
             bindings = <&macro_tap &bt BT_SEL 3 &bt BT_CLR>;
         };
+
+        auml_mac_lwr: auml_mac_lwr {
+            compatible = "zmk,behavior-macro";
+            label = "AUML_MAC_LWR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp A>;
+        };
+
+        auml_mac_upr: auml_mac_upr {
+            compatible = "zmk,behavior-macro";
+            label = "AUML_MAC_UPR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LSHFT>
+                , <&macro_tap     &kp A>
+                , <&macro_release &kp LSHFT>;
+        };
+
+        ouml_mac_lwr: ouml_mac_lwr {
+            compatible = "zmk,behavior-macro";
+            label = "OUML_MAC_LWR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp O>;
+        };
+
+        ouml_mac_upr: ouml_mac_upr {
+            compatible = "zmk,behavior-macro";
+            label = "OUML_MAC_UPR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LSHFT>
+                , <&macro_tap     &kp O>
+                , <&macro_release &kp LSHFT>;
+        };
+
+        uuml_mac_lwr: uuml_mac_lwr {
+            compatible = "zmk,behavior-macro";
+            label = "UUML_MAC_LWR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp U>;
+        };
+
+        uuml_mac_upr: uuml_mac_upr {
+            compatible = "zmk,behavior-macro";
+            label = "UUML_MAC_UPR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LSHFT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LSHFT>;
+        };
+
+        mac_szlig: mac_szlig {
+            compatible = "zmk,behavior-macro";
+            label = "MAC_SZLIG";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp S>
+                , <&macro_release &kp LALT>;
+        };
+
+        mac_euro: mac_euro {
+            compatible = "zmk,behavior-macro";
+            label = "MAC_EURO";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT &kp LSHFT>
+                , <&macro_tap     &kp N2>
+                , <&macro_release &kp LALT &kp LSHFT>;
+        };
+
     };
 
     behaviors {
@@ -240,6 +492,30 @@
             bindings = <&bt BT_SEL 3>, <&u_bt3_clr>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+      
+        auml_mac: auml_mac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "AUML_MAC";
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&auml_mac_lwr>, <&auml_mac_upr>;
+        };
+        
+        ouml_mac: ouml_mac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "OUML_MAC";
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&ouml_mac_lwr>, <&ouml_mac_upr>;
+        };
+        
+        uuml_mac: uuml_mac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "UUML_MAC";
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&uuml_mac_lwr>, <&uuml_mac_upr>;
+        };
 
     };
 
@@ -304,13 +580,80 @@
         media_layer {
             label= "MEDIA";
             bindings = <
-                &bootloader    &none        &none         &none         &none         &u_rgb_tog    &u_rgb_eff    &u_rgb_hui    &u_rgb_sai    &u_rgb_bri
+                &bootloader    &to MBASE    &to BASE      &none         &none         &u_rgb_tog    &u_rgb_eff    &u_rgb_hui    &u_rgb_sai    &u_rgb_bri
                 &kp LGUI       &kp LALT     &kp LCTRL     &kp LSHFT     &none         &u_ep_tog     &kp C_PREV    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT
                 &none          &kp RALT     &none         &none         &none         &u_out_tog    &u_bt0_tog    &u_bt1_tog    &u_bt2_tog    &u_bt3_tog
                                             &none         &none         &none         &kp C_STOP    &kp C_PP      &kp C_MUTE
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
+
+        mbase_layer {
+            label= "MBASE";
+            bindings = <
+                &kp Q         &kp W         &kp F         &kp P         &kp B         &kp J         &kp L         &kp U         &kp Y         &kp QUOT
+                &hm LCTRL A   &hm LALT R    &hm LGUI S    &hs LSHFT T   &kp G         &kp M         &hs RSHFT N   &hm LGUI E    &hm LALT I    &hm RCTRL O
+                &kp Z         &hm RALT X    &kp C         &kp D         &kp V         &kp K         &kp H         &kp COMMA     &hm RALT DOT  &kp SLASH
+                                            &lt MMEDIA ESC &lt MNAV SPACE &kp TAB     &lt MSYM RET  &lt MNUM BSPC &lt MFUN DEL
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        msym_layer {
+            label= "MSYM";
+            bindings = <
+                &kp LBRC      &kp AMPS      &kp ASTRK     &kp LPAR      &kp RBRC      &none         &none         &none         &none         &none
+                &kp COLON     &kp DLLR      &kp PRCT      &kp CRRT      &kp PLUS      &none         &kp RSHFT     &kp LGUI      &kp LALT      &kp RCTRL
+                &kp TILDE     &kp EXCL      &kp AT        &kp HASH      &kp PIPE      &none         &none         &none         &kp RALT      &none
+                                            &kp LPAR      &kp RPAR      &kp UNDER     &none         &none         &none
+             >;
+             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        mnav_layer {
+            label= "MNAV";
+            bindings = <
+                &none         &none         &none         &none         &none         &none         &none         &none         &none         &none
+                &kp LCTRL     &kp LALT      &kp LGUI      &kp LSHFT     &none         &none         &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT
+                &none         &kp RALT      &none         &none         &none         &none         &kp HOME      &kp PG_DN     &kp PG_UP     &kp END
+                                            &none         &none         &none         &kp RET       &kp BSPC      &kp DEL
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        mnum_layer {
+            label= "MNUM";
+            bindings = <
+                &kp LBKT      &kp N7        &kp N8        &kp N9        &kp RBKT      &none         &none         &none         &none         &none
+                &kp SEMI      &kp N4        &kp N5        &kp N6        &kp EQUAL     &none         &kp RSHFT     &kp LGUI      &kp LALT      &kp RCTRL
+                &kp GRAVE     &kp N1        &kp N2        &kp N3        &kp BSLH      &none         &none         &none         &kp RALT      &none
+                                            &kp DOT       &kp N0        &kp MINUS     &none         &none         &none
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        mfun_layer {
+            label= "MFUN";
+            bindings = <
+                &kp F12       &kp F7        &kp F8        &kp F9        &kp PSCRN     &none         &none         &none         &none         &bootloader
+                &kp F11       &kp F4        &kp F5        &kp F6        &kp SLCK      &none         &kp RSHFT     &kp LGUI      &kp LALT      &kp RCTRL
+                &kp F10       &kp F1        &kp F2        &kp F3        &kp PAUSE_BREAK &none       &none         &none         &kp RALT      &none
+                                            &kp K_APP     &kp SPACE     &kp TAB       &none         &none         &none
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        mmedia_layer {
+            label= "MMEDIA";
+            bindings = <
+                &bootloader    &to MBASE    &to BASE      &none         &none         &u_rgb_tog    &u_rgb_eff    &u_rgb_hui    &u_rgb_sai    &u_rgb_bri
+                &kp LCTRL      &kp LALT     &kp LGUI      &kp LSHFT     &none         &u_ep_tog     &kp C_PREV    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT
+                &none          &kp RALT     &none         &none         &none         &u_out_tog    &u_bt0_tog    &u_bt1_tog    &u_bt2_tog    &u_bt3_tog
+                                            &none         &none         &none         &kp C_STOP    &kp C_PP      &kp C_MUTE
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
     };
 
     center_encoder: encoder_center {
